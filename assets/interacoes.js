@@ -2,8 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initContadores();
   initPulseCTA();
+  initProvaSocial();
   initPixelClique();
 });
+
+const PROVA_SOCIAL_MIN = 1;
+const PROVA_SOCIAL_MAX = 5;
+const DELAY_INICIAL_MS = 6000;
+const DURACAO_VISIVEL_MS = 8000;
+const INTERVALO_MIN_MS = 15000;
+const INTERVALO_MAX_MS = 25000;
 
 function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -108,4 +116,46 @@ function initPulseCTA() {
   if (cta) {
     cta.classList.add('btn-pulse');
   }
+}
+
+function textoProvaSocial(n) {
+  return n === 1
+    ? '1 pessoa acabou de comprar'
+    : `${n} pessoas acabaram de comprar`;
+}
+
+function sortearIntervalo() {
+  return INTERVALO_MIN_MS + Math.random() * (INTERVALO_MAX_MS - INTERVALO_MIN_MS);
+}
+
+function criarToastProvaSocial() {
+  const toast = document.createElement('div');
+  toast.className = 'social-toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+
+  const texto = document.createElement('span');
+  texto.className = 'social-toast-text';
+  toast.appendChild(texto);
+
+  document.body.appendChild(toast);
+  return toast;
+}
+
+function initProvaSocial() {
+  const toast = criarToastProvaSocial();
+  const textoEl = toast.querySelector('.social-toast-text');
+
+  function ciclo() {
+    const n = Math.floor(Math.random() * (PROVA_SOCIAL_MAX - PROVA_SOCIAL_MIN + 1)) + PROVA_SOCIAL_MIN;
+    textoEl.textContent = textoProvaSocial(n);
+    toast.classList.add('show');
+
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(ciclo, sortearIntervalo());
+    }, DURACAO_VISIVEL_MS);
+  }
+
+  setTimeout(ciclo, DELAY_INICIAL_MS);
 }
