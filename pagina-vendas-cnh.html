@@ -672,6 +672,19 @@
       margin-top: 14px
     }
 
+    .btn-pulse {
+      animation: pulse 2.5s ease-in-out infinite
+    }
+
+    .btn-pulse:hover {
+      animation-play-state: paused
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1) }
+      50% { transform: scale(1.03) }
+    }
+
     .offer-guar {
       display: flex;
       align-items: center;
@@ -834,6 +847,10 @@
 
       .btn {
         transition: none
+      }
+
+      .btn-pulse {
+        animation: none
       }
     }
   </style>

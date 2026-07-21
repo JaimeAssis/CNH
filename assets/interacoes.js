@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initContadores();
+  initPulseCTA();
   initPixelClique();
 });
 
@@ -100,4 +101,11 @@ function initPixelClique() {
       }
     });
   });
+}
+
+function initPulseCTA() {
+  const cta = document.getElementById('checkout-btn');
+  if (cta) {
+    cta.classList.add('btn-pulse');
+  }
 }
