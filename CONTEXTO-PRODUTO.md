@@ -39,13 +39,15 @@ Pessoas que:
 
 ## Infraestrutura técnica da página
 
-- Página única em HTML/CSS/JS vanilla: [pagina-vendas-cnh.html](pagina-vendas-cnh.html).
+- HTML/CSS/JS vanilla: [pagina-vendas-cnh.html](pagina-vendas-cnh.html) (markup + estilos) e [assets/interacoes.js](assets/interacoes.js) (todo o JS de comportamento, carregado via `<script defer>` no final do `<body>`).
+- **`assets/interacoes.js`** concentra: reveal-on-scroll com stagger (`initReveal`), contador animado da faixa de números (`initContadores`), pulso no CTA principal da oferta (`initPulseCTA`), toast de prova social simulada (`initProvaSocial`) e o rastreamento de clique do Meta Pixel (`initPixelClique`) — ver detalhes de tracking abaixo. Qualquer alteração de comportamento/tracking da página deve ser feita nesse arquivo, não em `<script>` inline no HTML.
 - **Checkout**: todos os botões de compra/CTA apontam para o link de checkout da Hotmart:
   `https://pay.hotmart.com/B106812764F?checkoutMode=10`
 - **Rastreamento (Meta Pixel)**: ID `2068011111260569`, instalado na página.
   - Envia **PageView** automaticamente ao carregar a página.
-  - Envia um **evento customizado de clique** (`trackCustom`, não é evento padrão) quando o usuário clica em qualquer botão de compra/CTA.
+  - Envia um **evento customizado de clique** (`trackCustom`, não é evento padrão), via `initPixelClique()` em `assets/interacoes.js`, quando o usuário clica em qualquer botão de compra/CTA.
   - **Não envia `InitiateCheckout` nem `Purchase` pelo pixel do navegador** — esses dois eventos são enviados via **API de Conversões pela própria Hotmart** (integração server-side no back-end da Hotmart), para evitar duplicidade e manter a atribuição mais confiável. Qualquer alteração futura de tracking nesta página deve respeitar essa divisão de responsabilidade.
+- **Prova social simulada**: `initProvaSocial()` mostra um toast ("N pessoa(s) acabou/acabaram de comprar") em ciclo, com números e textos genéricos (sem nomes/cidades) — não é dado real de vendas, é um efeito de prova social similar a ferramentas como Fomo/TrustPulse.
 
 ## O que evitar ao editar esta página
 
