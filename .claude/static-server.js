@@ -16,7 +16,7 @@ const mime = {
 
 http.createServer((req, res) => {
   const urlPath = decodeURIComponent(req.url.split('?')[0]);
-  const filePath = path.join(root, urlPath === '/' ? '/pagina-vendas-cnh.html' : urlPath);
+  const filePath = path.join(root, urlPath === '/' ? '/index.html' : urlPath);
   if (!filePath.startsWith(root)) {
     res.writeHead(403);
     res.end('Forbidden');

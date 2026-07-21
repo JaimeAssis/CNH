@@ -39,7 +39,7 @@ Pessoas que:
 
 ## Infraestrutura técnica da página
 
-- HTML/CSS/JS vanilla: [pagina-vendas-cnh.html](pagina-vendas-cnh.html) (markup + estilos) e [assets/interacoes.js](assets/interacoes.js) (todo o JS de comportamento, carregado via `<script defer>` no final do `<body>`).
+- HTML/CSS/JS vanilla: [index.html](index.html) (markup + estilos) e [assets/interacoes.js](assets/interacoes.js) (todo o JS de comportamento, carregado via `<script defer>` no final do `<body>`). O arquivo se chama `index.html` (não `pagina-vendas-cnh.html`) porque hosts estáticos como a Vercel servem a rota raiz `/` procurando por esse nome — renomear evita 404 no domínio.
 - **`assets/interacoes.js`** concentra: reveal-on-scroll com stagger (`initReveal`), contador animado da faixa de números (`initContadores`), pulso no CTA principal da oferta (`initPulseCTA`), toast de prova social simulada (`initProvaSocial`) e o rastreamento de clique do Meta Pixel (`initPixelClique`) — ver detalhes de tracking abaixo. Qualquer alteração de comportamento/tracking da página deve ser feita nesse arquivo, não em `<script>` inline no HTML.
 - **Checkout**: todos os botões de compra/CTA apontam para o link de checkout da Hotmart:
   `https://pay.hotmart.com/B106812764F?checkoutMode=10`
