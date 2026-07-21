@@ -1071,21 +1071,7 @@
     </div>
   </footer>
 
-  <script>
-    // reveal no scroll
-    const io = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }) }, { threshold: .12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    // Meta Pixel — evento customizado de clique nos botões de compra/CTA.
-    // Não usa InitiateCheckout nem Purchase: esses são enviados pela Hotmart via API de Conversões.
-    document.querySelectorAll('.btn-comprar').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        if (typeof fbq === 'function') {
-          fbq('trackCustom', 'CliqueBotaoComprar', { botao: btn.textContent.trim() });
-        }
-      });
-    });
-  </script>
+  <script src="assets/interacoes.js" defer></script>
 </body>
 
 </html>
