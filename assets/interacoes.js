@@ -67,6 +67,7 @@ function initContadores() {
 
 function buildStaggerMap() {
   const grupos = [
+    '.depo-grid > .reveal',
     '.peg-list > .reveal',
     '.mech-grid > .reveal',
     '.stack-grid > .reveal',
