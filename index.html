@@ -77,13 +77,11 @@
       padding: 0 22px
     }
 
-    .eyebrow {
-      font-family: var(--eyebrow);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 500;
-      font-size: 10px;
 
+
+    p {
+      font-size: 16px;
+      font-weight: 400;
     }
 
     h1,
@@ -92,7 +90,7 @@
       font-family: var(--display);
       line-height: 1.02;
       letter-spacing: -.01em;
-      font-weight: 700
+      font-weight: 600
     }
 
     /* ---- botões ---- */
@@ -131,13 +129,6 @@
       padding: 3px 9px;
       border-radius: 6px;
       font-size: 15px
-    }
-
-    .btn-note {
-      font-size: 13px;
-      color: var(--cinza);
-      margin-top: 12px;
-      font-weight: 500
     }
 
     /* ---- barra fixa ---- */
@@ -211,8 +202,20 @@
       z-index: 2;
       display: grid;
       grid-template-columns: 1.35fr .9fr;
-      gap: 40px;
+      grid-template-areas:
+        "copy media"
+        "cta media";
+      column-gap: 40px;
+      row-gap: 0;
       align-items: center
+    }
+
+    .hero-copy {
+      grid-area: copy
+    }
+
+    .hero-cta {
+      grid-area: cta
     }
 
     .hero .eyebrow {
@@ -249,30 +252,53 @@
     }
 
     .hero .cta-row {
-      margin-top: 26px
+      margin-top: 28px
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px 10px;
+      margin-top: 18px
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245, 184, 0, .16);
+      border: 1px solid rgba(245, 184, 0, .6);
+      color: #fff3d6;
+      font-size: 12.5px;
+      font-weight: 600;
+      line-height: 1.2;
+      padding: 7px 12px;
+      border-radius: 30px;
+      white-space: nowrap
+    }
+
+    .badge-pill svg {
+      flex: none
     }
 
     .hero .trust {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px 20px;
-      margin-top: 22px;
-      font-size: 13.5px;
-      color: #a9c6b5
+      gap: 8px 10px;
+      margin-top: 12px
     }
 
-    .hero .trust span {
-      display: flex;
-      align-items: center;
-      gap: 7px
-    }
-
-    .hero .trust svg {
-      flex: none
+    .hero .trust .badge-pill {
+      background: transparent;
+      border-color: rgba(169, 198, 181, .3);
+      color: #a9c6b5;
+      font-size: 12px;
+      font-weight: 500
     }
 
     /* demo em vídeo — mockup de celular */
     .hero-media {
+      grid-area: media;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -860,21 +886,64 @@
 
     /* responsivo */
     @media (max-width:860px) {
+      .hero {
+        padding: 6px 0 52px
+      }
+
       .hero .wrap {
         grid-template-columns: 1fr;
-        gap: 10px
+        grid-template-areas:
+          "copy"
+          "media"
+          "cta";
+        row-gap: 0
       }
 
       .hero h1 {
-        font-size: 35px
+        font-size: 32px;
+        line-height: 1.16;
+        margin-bottom: 14px
+      }
+
+      .hero p.sub {
+        font-size: 16px;
+        margin-bottom: 0
       }
 
       .hero-media {
-        margin-top: 6px
+        margin-top: 26px
+      }
+
+      .hero-cta {
+        margin-top: 26px
+      }
+
+      .hero .cta-row {
+        margin-top: 0
+      }
+
+      .hero .btn-comprar {
+        width: 100%;
+        justify-content: center
+      }
+
+      .hero-badges {
+        gap: 8px;
+        margin-top: 16px
+      }
+
+      .hero .trust {
+        gap: 6px 8px;
+        margin-top: 12px
+      }
+
+      .badge-pill {
+        padding: 6px 11px;
+        font-size: 12px
       }
 
       .phone-mock {
-        width: 188px
+        width: 190px
       }
 
       .peg-list,
@@ -901,6 +970,20 @@
         max-width: none;
         bottom: 12px;
         font-size: 13px
+      }
+    }
+
+    @media (max-width:380px) {
+      .wrap {
+        padding: 0 16px
+      }
+
+      .hero h1 {
+        font-size: 28px
+      }
+
+      .phone-mock {
+        width: 172px
       }
     }
 
@@ -943,22 +1026,9 @@
   <!-- HERO -->
   <header class="hero">
     <div class="wrap">
-      <div>
-        <span class="eyebrow">● Atualizado para o novo modelo 2026</span>
-        <h1>Provas de 2026 estão cheias de <span class="y">"pegadinhas"</span> que induz ao erro.</h1>
-        <p class="sub"><span class="y">15 armadilhas da prova CNH</span> que mais reprovam alunos após novas mudanças de 2026.</p>
-        <div class="cta-row">
-          <a href="https://pay.hotmart.com/B106812764F?checkoutMode=10" class="btn btn-comprar">Quero passar de primeira <span class="price-tag">R$27</span></a>
-          <div class="btn-note">Acesso imediato · Garantia de 7 dias · Abre no celular e no computador</div>
-        </div>
-        <div class="trust">
-          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7fc79f" stroke-width="2.5">
-              <path d="M20 6L9 17l-5-5" />
-            </svg> Fonte: Banco Nacional de Questões + CTB</span>
-          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7fc79f" stroke-width="2.5">
-              <path d="M20 6L9 17l-5-5" />
-            </svg> Vale em todos os estados</span>
-        </div>
+      <div class="hero-copy">
+        <h1>Novo modelo da prova teórica de CNH usa <span class="y">"pegadinhas"</span> que induzem alunos ao erro!</h1>
+        <p class="sub"><span class="y">Criamos um simulado atualizado </span>com 15 "armadilhas" que mais reprovam alunos após mudanças de 2026.</p>
       </div>
       <div class="hero-media">
         <div class="phone-mock">
@@ -967,6 +1037,30 @@
           </video>
         </div>
         <div class="media-tag">Print real de dentro do material</div>
+      </div>
+      <div class="hero-cta">
+        <div class="cta-row">
+          <a href="https://pay.hotmart.com/B106812764F?checkoutMode=10" class="btn btn-comprar">Quero passar de primeira <span class="price-tag">R$27</span></a>
+        </div>
+        <div class="hero-badges">
+          <span class="badge-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amarelo)" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>Acesso imediato</span>
+          <span class="badge-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amarelo)" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>Garantia de 7 dias</span>
+          <span class="badge-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amarelo)" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>Abre no celular e no computador</span>
+        </div>
+        <div class="trust">
+          <span class="badge-pill muted"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7fc79f" stroke-width="2.5">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>Fonte: Banco Nacional de Questões + CTB</span>
+          <span class="badge-pill muted"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7fc79f" stroke-width="2.5">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>Vale em todos os estados</span>
+        </div>
       </div>
     </div>
   </header>
