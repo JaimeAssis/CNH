@@ -11,7 +11,7 @@
     !function (f, b, e, v, n, t, s) {
       if (f.fbq) return; n = f.fbq = function () {
         n.callMethod ?
-        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
       };
       if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
       n.queue = []; t = b.createElement(e); t.async = !0;
@@ -78,7 +78,15 @@
       padding: 0 22px
     }
 
-
+    /* rótulo pequeno em caixa alta acima dos títulos de seção */
+    .eyebrow {
+      font-family: var(--eyebrow);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-size: 12.5px;
+      line-height: 1.2
+    }
 
     p {
       font-size: 16px;
@@ -319,7 +327,7 @@
       font-weight: 500
     }
 
-    /* demo em vídeo — mockup de celular */
+    /* área da imagem do produto na hero */
     .hero-media {
       grid-area: media;
       display: flex;
@@ -327,6 +335,27 @@
       align-items: center;
       gap: 16px
     }
+
+    /* Capa do e-book — imagem única, centralizada, logo acima do CTA.
+       ATENÇÃO: no mobile este bloco fica ENTRE a copy e o botão de compra, então
+       cada pixel de altura aqui empurra o CTA para baixo. O limite é por ALTURA
+       (max-height), não por largura, pra funcionar com qualquer proporção de
+       capa que você subir. Ver "Restrição da dobra" no CONTEXTO-PRODUTO.md. */
+    .hero-capa {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      /* height:auto é obrigatório: sem ele o atributo height do HTML vence o
+         max-height e a imagem estica. */
+      height: auto;
+      max-height: 340px;
+      margin: 0 auto;
+      /* PNG/WebP recortado com fundo transparente: nada de border-radius nem
+         box-shadow retangular. drop-shadow acompanha o contorno do livro. */
+      filter: drop-shadow(0 18px 26px rgba(0, 0, 0, .55))
+    }
+
+    /* demo em vídeo — mockup de celular (seção "veja por dentro") */
 
     .phone-mock {
       position: relative;
@@ -808,6 +837,232 @@
       color: var(--verde)
     }
 
+    /* meios de pagamento / segurança */
+    .pay-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      justify-content: center;
+      margin-top: 14px
+    }
+
+    .pay-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--papel);
+      border: 1px solid var(--linha);
+      color: #46524a;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 11px;
+      border-radius: 20px;
+      white-space: nowrap
+    }
+
+    .pay-pill svg {
+      flex: none;
+      color: var(--verde)
+    }
+
+    /* selo de garantia destacado */
+    .guar-seal {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-top: 18px;
+      background: var(--verde-luz);
+      border: 1px solid #bcdcc8;
+      border-radius: 12px;
+      padding: 14px 16px
+    }
+
+    .guar-seal svg {
+      flex: none;
+      color: var(--verde)
+    }
+
+    .guar-seal b {
+      display: block;
+      font-size: 14.5px;
+      color: var(--verde-esc);
+      line-height: 1.35
+    }
+
+    .guar-seal span {
+      display: block;
+      font-size: 13px;
+      color: #4a5a50;
+      line-height: 1.4;
+      margin-top: 2px
+    }
+
+    /* mini-oferta no meio da página */
+    .mini-offer {
+      padding: 44px 0
+    }
+
+    .mini-card {
+      display: grid;
+      grid-template-columns: 1.25fr .85fr;
+      gap: 26px;
+      align-items: center;
+      background: var(--branco);
+      border: 1px solid var(--linha);
+      border-left: 5px solid var(--amarelo);
+      border-radius: 14px;
+      padding: 26px 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .06)
+    }
+
+    .mini-card .eyebrow {
+      color: var(--verde);
+      margin-bottom: 8px
+    }
+
+    .mini-card h3 {
+      font-size: 28px;
+      margin-bottom: 8px
+    }
+
+    .mini-card .mini-txt p {
+      color: var(--cinza);
+      font-size: 15px
+    }
+
+    .mini-cta {
+      text-align: center
+    }
+
+    .mini-price {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 44px;
+      color: var(--verde);
+      line-height: 1;
+      margin-bottom: 10px
+    }
+
+    .mini-price small {
+      font-size: 20px;
+      vertical-align: super
+    }
+
+    .mini-price span {
+      font-size: 24px
+    }
+
+    .mini-cta .btn {
+      width: 100%;
+      justify-content: center
+    }
+
+    .mini-guar {
+      display: block;
+      margin-top: 10px;
+      font-size: 12.5px;
+      color: var(--cinza)
+    }
+
+    /* faixa de fontes / autoridade */
+    .fontes {
+      background: var(--branco);
+      border-top: 1px solid var(--linha);
+      border-bottom: 1px solid var(--linha);
+      padding: 40px 0
+    }
+
+    .fontes .eyebrow {
+      color: var(--verde);
+      margin-bottom: 10px
+    }
+
+    .fontes h2 {
+      font-size: 30px;
+      margin-bottom: 22px
+    }
+
+    .fontes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px
+    }
+
+    .fonte-item {
+      background: var(--papel);
+      border: 1px solid var(--linha);
+      border-radius: 10px;
+      padding: 15px 17px
+    }
+
+    .fonte-item b {
+      display: block;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 19px;
+      margin-bottom: 4px
+    }
+
+    .fonte-item span {
+      font-size: 13.5px;
+      color: var(--cinza);
+      line-height: 1.45
+    }
+
+    /* seção veja por dentro */
+    .dentro {
+      background: linear-gradient(160deg, var(--verde-esc), var(--verde-prof));
+      color: #fff
+    }
+
+    .dentro .sec-eyebrow {
+      color: var(--amarelo)
+    }
+
+    .dentro h2.big {
+      color: #fff
+    }
+
+    .dentro .lead {
+      color: #cfe0d6
+    }
+
+    .dentro-inner {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-top: 32px
+    }
+
+    .dentro-inner .phone-mock {
+      flex: none;
+      transform: rotate(0)
+    }
+
+    .dentro-list {
+      list-style: none
+    }
+
+    .dentro-list li {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      color: #cfe0d6;
+      font-size: 15.5px;
+      padding: 7px 0
+    }
+
+    .dentro-list svg {
+      flex: none;
+      color: var(--amarelo);
+      margin-top: 3px
+    }
+
+    /* barra fixa de compra no mobile */
+    .mobile-bar {
+      display: none
+    }
+
     /* faq */
     .faq {
       background: var(--branco);
@@ -939,6 +1194,8 @@
         padding: 6px 0 52px
       }
 
+      /* Prints entre a copy e o CTA. Só funciona porque os prints são
+         horizontais e baixos (~110px): o CTA continua acima da dobra. */
       .hero .wrap {
         grid-template-columns: 1fr;
         grid-template-areas:
@@ -960,11 +1217,32 @@
       }
 
       .hero-media {
-        margin-top: 26px
+        margin-top: 12px;
+        align-items: center
+      }
+
+      /* teto de 190px: é o que sobra pro CTA terminar acima da dobra
+         num celular de 667px de altura. Não aumente sem remedir. */
+      .hero-capa {
+        max-height: 190px
+      }
+
+      /* celular alto (iPhone 12+, maioria dos Android atuais): sobra altura,
+         então a capa cresce sem empurrar o CTA pra fora da dobra. */
+      @media (min-height:760px) {
+        .hero-capa {
+          max-height: 250px
+        }
+      }
+
+      @media (min-height:880px) {
+        .hero-capa {
+          max-height: 290px
+        }
       }
 
       .hero-cta {
-        margin-top: 26px
+        margin-top: 12px
       }
 
       .hero .cta-row {
@@ -997,12 +1275,46 @@
 
       .peg-list,
       .mech-grid,
-      .depo-grid {
+      .mini-card,
+      .fontes-grid {
         grid-template-columns: 1fr
+      }
+
+      /* depoimentos em 2x2: corta ~1.000px de rolagem */
+      .depo-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px
+      }
+
+      .depo-item p {
+        padding: 8px 12px 16px;
+        font-size: 13px
+      }
+
+      .depo-selo {
+        margin-top: 11px;
+        font-size: 10px
+      }
+
+      .dentro-inner {
+        flex-direction: column;
+        gap: 26px
+      }
+
+      .mini-card {
+        padding: 22px
+      }
+
+      .mini-card h3 {
+        font-size: 25px
       }
 
       h2.big {
         font-size: 34px
+      }
+
+      .fontes h2 {
+        font-size: 27px
       }
 
       .final h2 {
@@ -1013,12 +1325,69 @@
         display: none
       }
 
+      /* barra fixa de compra — só no mobile, aparece depois da hero */
+      .mobile-bar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 80;
+        background: var(--verde-prof);
+        border-top: 1px solid rgba(245, 184, 0, .4);
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+        box-shadow: 0 -8px 24px rgba(0, 0, 0, .38);
+        transform: translateY(115%);
+        transition: transform .28s ease
+      }
+
+      .mobile-bar.show {
+        transform: none
+      }
+
+      .mobile-bar .mb-price {
+        display: block;
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: 25px;
+        color: #fff;
+        line-height: 1
+      }
+
+      .mobile-bar .mb-sub {
+        display: block;
+        font-size: 11px;
+        color: var(--amarelo);
+        font-weight: 600;
+        line-height: 1.2;
+        margin-top: 2px
+      }
+
+      .mobile-bar .btn {
+        margin-left: auto;
+        padding: 13px 18px;
+        font-size: 14px;
+        box-shadow: 0 4px 0 #c99a00
+      }
+
+      footer {
+        padding-bottom: 100px
+      }
+
       .social-toast {
         left: 12px;
         right: 12px;
         max-width: none;
         bottom: 12px;
         font-size: 13px
+      }
+
+      /* sobe o toast só quando a barra de compra está na tela, senão ele
+         cobre o CTA da hero (onde a barra ainda está escondida) */
+      body.barra-visivel .social-toast {
+        bottom: 88px
       }
     }
 
@@ -1033,6 +1402,15 @@
 
       .phone-mock {
         width: 172px
+      }
+
+      .mobile-bar .mb-price {
+        font-size: 22px
+      }
+
+      .mobile-bar .btn {
+        padding: 12px 14px;
+        font-size: 13px
       }
     }
 
@@ -1058,6 +1436,14 @@
       .social-toast {
         transition: none
       }
+
+      .mobile-bar {
+        transition: none
+      }
+
+      .price-row .urgency-badge {
+        animation: none
+      }
     }
   </style>
 </head>
@@ -1081,39 +1467,42 @@
             <path d="M12 9v5" />
             <path d="M12 17h.01" />
           </svg>Atenção: mudança na prova 2026</div>
-        <h1>15 pegadinhas mais usadas na prova teórica de CNH 2026 que induzem alunos ao erro!</span></h1>
-        <p class="sub">Criamos um simulado atualizado com as <span class="y"> 15 armadilhas que mais reprovam alunos após mudanças de 2026.</span></p>
-      </div>
-      <div class="hero-media">
-        <div class="phone-mock">
-          <video poster="assets/Por-dentro-poster.jpg" preload="none" controls playsinline aria-label="Demonstração do material: pegadinha real da prova da CNH">
-            <source src="assets/Por-dentro.mp4" type="video/mp4">
-          </video>
-        </div>
+        <h1><span class="y">Novas pegadinhas da prova teórica de 2026</span> que faz você reprovar!</h1>
+        <p class="sub">Veja as <span class="y">15 armadilhas mais usadas</span> no novo modelo da prova teórica de 2026</p>
       </div>
       <div class="hero-cta">
         <div class="cta-row">
-          <a href="https://pay.cakto.com.br/zeckx87_1004231" class="btn btn-comprar">Liberar simulado <span class="price-tag">R$15,00</span></a>
+          <a href="https://pay.cakto.com.br/zeckx87_1004231" class="btn btn-comprar">Liberar o simulado <span class="price-tag">R$27,90</span></a>
         </div>
         <div class="hero-badges">
           <span class="badge-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amarelo)" stroke-width="3">
               <path d="M20 6L9 17l-5-5" />
-            </svg>Acesso imediato</span>
+            </svg>Pix aprovado na hora</span>
+          <span class="badge-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amarelo)" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>Acesso imediato no e-mail</span>
           <span class="badge-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amarelo)" stroke-width="3">
               <path d="M20 6L9 17l-5-5" />
             </svg>Garantia de 7 dias</span>
-          <span class="badge-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amarelo)" stroke-width="3">
-              <path d="M20 6L9 17l-5-5" />
-            </svg>Abre no celular e no computador</span>
         </div>
         <div class="trust">
           <span class="badge-pill muted"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7fc79f" stroke-width="2.5">
               <path d="M20 6L9 17l-5-5" />
-            </svg>Fonte: Banco Nacional de Questões + CTB</span>
+            </svg>Base: CTB + Banco Nacional de Questões (Senatran)</span>
+
           <span class="badge-pill muted"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7fc79f" stroke-width="2.5">
               <path d="M20 6L9 17l-5-5" />
             </svg>Vale em todos os estados</span>
         </div>
+      </div>
+      <div class="hero-media">
+        <!-- Capa recortada de "assets/capa pegadinhas.png" (original preservado).
+             WebP 61KB com fallback PNG. É a imagem LCP da página: sem lazy e com
+             fetchpriority alto. -->
+        <picture>
+          <source srcset="assets/capa-ebook.webp" type="image/webp">
+          <img class="hero-capa" src="assets/capa-ebook.png" alt="Capa do e-book Pegadinhas da CNH 2026: dicas e truques para passar de primeira, com questões comentadas e regras atualizadas." width="450" height="682" fetchpriority="high" decoding="async">
+        </picture>
       </div>
     </div>
   </header>
@@ -1125,7 +1514,9 @@
     <div class="wrap">
       <div class="eyebrow sec-eyebrow reveal">Prova real</div>
       <h2 class="big reveal">Quem passou sem cair na <span class="y">pegadinha</span> esse mês.</h2>
-      <p class="lead reveal">Fotos de quem estudou as armadilhas certas — e não caiu nelas na hora da prova.</p>
+      <p class="lead reveal">Fotos enviadas por quem comprou o material, estudou as armadilhas certas — e não caiu nelas na hora da prova.</p>
+      <!-- Para cada card: quando você recuperar os dados reais, troque o <p> por
+           <p><b>Nome, Cidade/UF</b><br>"frase da pessoa"</p> — não invente nome/cidade. -->
       <div class="depo-grid">
         <div class="depo-item reveal">
           <img src="assets/Depoimento.01.jpg" alt="Pessoa aprovada mostrando a CNH recém-tirada." loading="lazy">
@@ -1182,17 +1573,32 @@
     <div class="wrap">
       <div class="eyebrow sec-eyebrow reveal">O verdadeiro motivo das reprovações</div>
       <h2 class="big reveal">Seus estudos não te preparam para as "pegadinhas".</h2>
-      <p class="lead reveal">A maioria reprova não por que deixou de estudar. Muitos são pegos de surpresa e acabam reprovando em perguntas que pareciam tão obvias mas eram pegadinhas. A banca repete os mesmos truques pra pegar você no pulo, principalmente com as novas mudanças de 2026.</p>
+      <p class="lead reveal">A maioria reprova não porque deixou de estudar. Muitos são pegos de surpresa e acabam reprovando em perguntas que pareciam tão óbvias, mas eram pegadinhas. A banca repete os mesmos truques pra pegar você no pulo, principalmente com as novas mudanças de 2026.</p>
       <div class="peg-list">
         <div class="peg-item reveal"><b>"Sempre" e "nunca"</b>No trânsito quase tudo tem exceção. A palavra absoluta é a isca.</div>
         <div class="peg-item red reveal"><b>"Não", "exceto", "incorreta"</b>O enunciado inverte o que pede. Quem lê rápido marca o oposto.</div>
         <div class="peg-item reveal"><b>Placa trocada</b>Círculo vermelho proíbe. Losango amarelo avisa. Confundir é o erro nº1.</div>
         <div class="peg-item reveal"><b>Alternativa quase certa</b>Um número trocado, um lado errado. O furo está na última palavra.</div>
       </div>
+    </div>
+  </section>
 
-      <div class="video-entregavel">
-
+  <!-- MINI-OFERTA (meio da página) -->
+  <section class="block mini-offer">
+    <div class="wrap">
+      <div class="mini-card reveal">
+        <div class="mini-txt">
+          <div class="eyebrow">Acesso imediato</div>
+          <h3>Reconheça a armadilha antes de marcar.</h3>
+          <p>As 15 pegadinhas comentadas + 2 bônus. PDF que abre no celular e no computador, no seu e-mail em minutos.</p>
+        </div>
+        <div class="mini-cta">
+          <div class="mini-price"><small>R$</small>27<span>,90</span></div>
+          <a href="https://pay.cakto.com.br/zeckx87_1004231" class="btn btn-comprar">Liberar meu simulado</a>
+          <span class="mini-guar">Garantia de 7 dias · Pix na hora</span>
+        </div>
       </div>
+    </div>
   </section>
 
   <div class="hazard-divider" aria-hidden="true"></div>
@@ -1201,7 +1607,7 @@
   <section class="block mech">
     <div class="wrap">
       <div class="eyebrow sec-eyebrow reveal">O método</div>
-      <h2 class="big reveal">Identificando pegadiinhas que reprovam.</h2>
+      <h2 class="big reveal">Identificando as pegadinhas que reprovam.</h2>
       <p class="lead reveal">Você não precisa decorar 1.500 questões. Precisa reconhecer os truques que a banca repete em cada prova. Aprenda o padrão e você enxerga a armadilha em qualquer questão.</p>
       <div class="mech-grid">
         <div class="mech-card reveal">
@@ -1224,13 +1630,35 @@
     </div>
   </section>
 
+  <!-- FONTES / AUTORIDADE -->
+  <section class="fontes">
+    <div class="wrap">
+      <div class="eyebrow reveal">A base do material</div>
+      <h2 class="reveal">De onde saem essas pegadinhas.</h2>
+      <div class="fontes-grid">
+        <div class="fonte-item reveal">
+          <b>Código de Trânsito Brasileiro</b>
+          <span>Lei nº 9.503/97. Toda resposta comentada é conferida contra o texto da lei — não contra "achismo de autoescola".</span>
+        </div>
+        <div class="fonte-item reveal">
+          <b>Banco Nacional de Questões</b>
+          <span>O banco único da Senatran de onde os Detrans sorteiam as questões. É por isso que o material vale em qualquer estado.</span>
+        </div>
+        <div class="fonte-item reveal">
+          <b>Resolução Contran nº 1.020/2025</b>
+          <span>A norma que mudou o formato da prova no fim de 2025. Material grátis feito antes dela está desatualizado.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="hazard-divider" aria-hidden="true"></div>
 
   <!-- STACK -->
   <section class="block">
     <div class="wrap">
       <div class="eyebrow sec-eyebrow reveal">O que você recebe</div>
-      <h2 class="big reveal">Aumente suas chances de passar de primeira. <br>sem cair em pegadinhas!</h2>
+      <h2 class="big reveal">Aumente suas chances de passar de primeira,<br>sem cair em pegadinhas.</h2>
       <div class="stack-grid">
         <div class="stack-item reveal">
           <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1268,6 +1696,38 @@
 
   <div class="hazard-divider" aria-hidden="true"></div>
 
+  <!-- COMO FUNCIONA / VEJA POR DENTRO -->
+  <section class="block dentro">
+    <div class="wrap">
+      <div class="eyebrow sec-eyebrow reveal">Como funciona</div>
+      <h2 class="big reveal">Veja o material por dentro.</h2>
+      <p class="lead reveal">Sem cortes e sem promessa vazia: é isso que chega no seu e-mail depois da compra.</p>
+      <div class="dentro-inner">
+        <div class="phone-mock reveal">
+          <video poster="assets/Por-dentro-poster.jpg" preload="none" controls playsinline aria-label="Demonstração do material: pegadinha real da prova da CNH">
+            <source src="assets/Por-dentro-web.mp4" type="video/mp4">
+          </video>
+        </div>
+        <ul class="dentro-list reveal">
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>A questão exatamente no formato em que ela aparece na prova.</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>A palavra ou detalhe que foi plantado ali pra te derrubar, marcado.</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>O gabarito e — o que importa mais — o motivo pelo qual a outra alternativa engana.</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>PDF. Abre no celular, no computador e funciona offline depois de baixar.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="hazard-divider" aria-hidden="true"></div>
+
   <!-- OFERTA / PREÇO -->
   <section class="block offer" id="comprar">
     <div class="wrap">
@@ -1277,7 +1737,7 @@
           <h3>Passe de primeira sem sustos</h3>
         </div>
         <div class="offer-body">
-          <div class="anchor">Reprovar te custa <b>taxa de reexame + semanas de espera</b> — às vezes remarcar o processo inteiro. Este material custa menos que um lanche.</div>
+          <div class="anchor">Reprovar te custa <b>taxa de reexame + semanas de espera</b> — às vezes remarcar o processo inteiro. Este material custa menos que a taxa de uma remarcação.</div>
           <ul class="incl">
             <li><svg class="chk" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                 <path d="M20 6L9 17l-5-5" />
@@ -1293,18 +1753,33 @@
               </svg> O Decodificador de Pegadinhas <span class="val">incluído</span></li>
           </ul>
           <div class="price-row">
-            <div class="urgency-badge">Oferta por tempo limitado — pode expirar a qualquer momento</div>
-            <div class="old-price">De <s>R$27</s></div>
-            <div class="small">Hoje por</div>
-            <div class="big-price"><small>R$</small>15<span class="cents">,00</span></div>
+            <div class="urgency-badge">Sua prova tem data marcada — o material chega em minutos</div>
+            <div class="small">Pagamento único</div>
+            <div class="big-price"><small>R$</small>27<span class="cents">,90</span></div>
           </div>
           <a href="https://pay.cakto.com.br/zeckx87_1004231" class="btn btn-comprar" id="checkout-btn">Quero garantir meu acesso agora</a>
-          <div class="offer-guar">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="pay-row">
+            <span class="pay-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
+              </svg>Pix aprovado na hora</span>
+            <span class="pay-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <rect x="2" y="5" width="20" height="14" rx="2" />
+                <path d="M2 10h20" />
+              </svg>Cartão de crédito</span>
+            <span class="pay-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <rect x="4" y="10" width="16" height="11" rx="2" />
+                <path d="M8 10V7a4 4 0 018 0v3" />
+              </svg>Compra segura · não é assinatura</span>
+          </div>
+          <div class="guar-seal">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               <path d="M9 12l2 2 4-4" />
             </svg>
-            Garantia incondicional de 7 dias. Não curtiu, devolvemos.
+            <div>
+              <b>Garantia incondicional de 7 dias.</b>
+              <span>Abriu, leu e achou que não vale os R$27,90? Peço o reembolso pra você. Sem pergunta e sem enrolação.</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1324,12 +1799,11 @@
       </div>
       <div class="faq-item reveal">
         <h3>Quais as chances de cair na prova?</h3>
-        <p> Nem todas podem aparecer, mas algumas delas você com certeza irá se deparar ao fazer a prova. reunimos as pegadinhas das questões que mais cairam e continuam sendo feitas nas provas recentes de 2026.
-          Dados atualizados todo mês para manter atualizado sempre.</p>
+        <p>Nem todas vão aparecer na sua prova, mas com algumas delas você certamente vai se deparar. Reunimos as pegadinhas das questões que mais caíram e que continuam aparecendo nas provas recentes de 2026 — e, mais importante que a questão em si, o padrão que se repete em todas elas.</p>
       </div>
       <div class="faq-item reveal">
         <h3>Serve pro meu estado?</h3>
-        <p>Sim. Desde 2026 todos os Detrans sorteiam as questões de um banco nacional único, então o conteúdo vale em todo o país. O formato de aplicação pode variar por estado — confirme sempre no Detran do seu.</p>
+        <p>Sim. Pela Resolução Contran nº 1.020/2025, todos os Detrans passaram a sortear as questões de um banco nacional único, então o conteúdo vale em todo o país. O formato de aplicação pode variar por estado — confirme sempre no Detran do seu.</p>
       </div>
       <div class="faq-item reveal">
         <h3>E se eu reprovar mesmo assim?</h3>
@@ -1349,7 +1823,7 @@
     <div class="wrap">
       <h2 class="reveal">Sua prova tem <span class="y">data</span>.<br>As pegadinhas não vão esperar.</h2>
       <p class="reveal">Gaste alguns minutos hoje pra não perder semanas remarcando. Chegue sabendo exatamente onde a banca tenta te derrubar.</p>
-      <a href="https://pay.cakto.com.br/zeckx87_1004231" class="btn btn-comprar reveal">Garantir por R$15,00 <span class="price-tag">Oferta expira em breve</span></a>
+      <a href="https://pay.cakto.com.br/zeckx87_1004231" class="btn btn-comprar reveal">Garantir por R$27,90 <span class="price-tag">Acesso imediato</span></a>
     </div>
   </section>
 
@@ -1360,6 +1834,15 @@
       <p class="disc"><strong>Aviso.</strong> Material de estudo independente, elaborado com base no Código de Trânsito Brasileiro e nos conteúdos do Banco Nacional de Questões da Senatran (modelo vigente em 2026). Não é documento oficial do Detran e não reproduz questões literais da prova. A aprovação depende do preparo individual do candidato. O formato de aplicação do exame pode variar conforme o Detran de cada estado — confirme sempre no órgão oficial do seu estado. Este site não é afiliado ao Detran, à Senatran ou a qualquer órgão público.</p>
     </div>
   </footer>
+
+  <!-- BARRA FIXA DE COMPRA (mobile) — visibilidade controlada em interacoes.js -->
+  <div class="mobile-bar" id="mobile-bar">
+    <div>
+      <span class="mb-price">R$27,90</span>
+      <span class="mb-sub">Pix aprovado na hora</span>
+    </div>
+    <a href="https://pay.cakto.com.br/zeckx87_1004231" class="btn btn-comprar">Liberar acesso</a>
+  </div>
 
   <script src="assets/interacoes.js" defer></script>
 </body>

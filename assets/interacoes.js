@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPulseCTA();
   initProvaSocial();
   initPixelClique();
+  initBarraMobile();
 });
 
 const PROVA_SOCIAL_MIN = 1;
@@ -110,6 +111,40 @@ function initPixelClique() {
       }
     });
   });
+}
+
+// Barra fixa de compra no mobile. Aparece depois que o usuário passa da hero
+// (onde já existe um CTA) e se esconde quando o card de oferta está na tela,
+// pra não competir com o botão principal. O CSS só exibe a barra até 860px.
+function initBarraMobile() {
+  const barra = document.getElementById('mobile-bar');
+  if (!barra) return;
+
+  const hero = document.querySelector('.hero');
+  const oferta = document.getElementById('comprar');
+
+  // Tudo por leitura geométrica direta e síncrona: duas medições por evento de
+  // scroll são baratas e o estado nunca fica defasado. IntersectionObserver e
+  // requestAnimationFrame foram testados aqui e entregam o callback tarde,
+  // deixando a barra visível sobre o card de oferta.
+  function naTela(el) {
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return r.top < window.innerHeight && r.bottom > 0;
+  }
+
+  function atualizar() {
+    const passouHero = hero ? hero.getBoundingClientRect().bottom <= 0 : true;
+    // O card de oferta tem CTA próprio: esconde a barra pra não competir.
+    const mostrar = passouHero && !naTela(oferta);
+    barra.classList.toggle('show', mostrar);
+    // O CSS usa essa classe pra subir o toast de prova social e não cobrir a barra.
+    document.body.classList.toggle('barra-visivel', mostrar);
+  }
+
+  window.addEventListener('scroll', atualizar, { passive: true });
+  window.addEventListener('resize', atualizar);
+  atualizar();
 }
 
 function initPulseCTA() {
