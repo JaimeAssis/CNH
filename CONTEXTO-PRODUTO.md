@@ -44,12 +44,13 @@ Pessoas que:
 - HTML/CSS/JS vanilla: [index.html](index.html) (markup + estilos) e [assets/interacoes.js](assets/interacoes.js) (todo o JS de comportamento, carregado via `<script defer>` no final do `<body>`). O arquivo se chama `index.html` (não `pagina-vendas-cnh.html`) porque hosts estáticos como a Vercel servem a rota raiz `/` procurando por esse nome — renomear evita 404 no domínio.
 - **`assets/interacoes.js`** concentra: reveal-on-scroll com stagger (`initReveal`), contador animado da faixa de números (`initContadores`), pulso no CTA principal da oferta (`initPulseCTA`), toast de prova social simulada (`initProvaSocial`), rastreamento de clique do Meta Pixel (`initPixelClique`) e a barra fixa de compra do mobile (`initBarraMobile`). Qualquer alteração de comportamento/tracking da página deve ser feita nesse arquivo, não em `<script>` inline no HTML.
   - `initBarraMobile()` usa **leitura geométrica síncrona** (`getBoundingClientRect` no evento de `scroll`), de propósito. `IntersectionObserver` e `requestAnimationFrame` foram testados aqui e entregam o callback tarde, deixando a barra visível sobre o card de oferta. Não "otimize" isso de volta para IO/rAF.
-- **Checkout**: todos os botões de compra/CTA apontam para o link de checkout da Cakto:
-  `https://pay.cakto.com.br/zeckx87_1004231`
+- **Checkout**: todos os botões de compra/CTA apontam para o link de checkout da Hotmart:
+  `https://pay.hotmart.com/B106812764F?checkoutMode=10`
+  (histórico: chegou a usar Cakto por um período; voltou para Hotmart em 31/07/2026 — trocado nos 6 CTAs da página a pedido do dono.)
 - **Rastreamento (Meta Pixel)**: ID `1078666911488968`, instalado na página.
   - Envia **PageView** automaticamente ao carregar a página.
   - Envia um **evento customizado de clique** (`trackCustom`, não é evento padrão), via `initPixelClique()` em `assets/interacoes.js`, quando o usuário clica em qualquer botão de compra/CTA.
-  - **Não envia `InitiateCheckout` nem `Purchase` pelo pixel do navegador** — esses dois eventos são enviados via **API de Conversões pela própria Cakto** (server-side), para evitar duplicidade e manter a atribuição mais confiável. Confirmado pelo dono em 29/07/2026 que o `Purchase` está chegando corretamente. Qualquer alteração futura de tracking nesta página deve respeitar essa divisão de responsabilidade.
+  - **Não envia `InitiateCheckout` nem `Purchase` pelo pixel do navegador** — a intenção é que esses dois eventos sejam enviados via **API de Conversões pela própria plataforma de checkout** (server-side), para evitar duplicidade e manter a atribuição mais confiável. Isso tinha sido confirmado funcionando com a Cakto em 29/07/2026 — **com a volta para a Hotmart, reconfirme no Gerenciador de Eventos do Meta se o `Purchase` continua chegando neste pixel ID**, pois a integração server-side é específica de cada plataforma e pode não estar replicada na conta Hotmart. Qualquer alteração futura de tracking nesta página deve respeitar essa divisão de responsabilidade.
 - **Prova social simulada**: `initProvaSocial()` mostra um toast ("N pessoa(s) acabou/acabaram de comprar") em ciclo, com números e textos genéricos (sem nomes/cidades) — não é dado real de vendas, é um efeito de prova social similar a ferramentas como Fomo/TrustPulse.
 
 ## Restrição da dobra no mobile (importante)
